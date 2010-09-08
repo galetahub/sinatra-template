@@ -1,4 +1,4 @@
-require 'application'
+require File.expand_path('../config/application', __FILE__)
 
 set :run, false
 set :environment, :production
