@@ -16,8 +16,11 @@ error do
 end
 
 configure do
-  set :views, File.expand_path('../../views', __FILE__)
-  set :public, File.expand_path('../../public', __FILE__)
+  root_path = File.dirname(File.expand_path('../', __FILE__))
+  
+  set :views, File.join(root_path, 'views')
+  set :public, File.join(root_path, 'public')
+  set :static, true
   
   SiteConfig = OpenStruct.new(
                  :title => 'Your Application Name',
@@ -26,8 +29,8 @@ configure do
                )
 
   # load models
-  $LOAD_PATH.unshift("#{File.dirname(__FILE__)}/lib/models")
-  Dir.glob("#{File.dirname(__FILE__)}/lib/models/*.rb") { |lib| require File.basename(lib, '.*') }
+  $LOAD_PATH.unshift("#{root_path}/lib/models")
+  Dir.glob("#{root_path}/lib/models/*.rb") { |lib| require File.basename(lib, '.*') }
 
 #  DataMapper::Logger.new($stdout, :debug)
                
