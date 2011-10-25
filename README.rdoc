@@ -22,9 +22,9 @@ Add your specs in <tt>spec</tt>; just require <tt>spec_helper.rb</tt> to pre-con
 == Getting Started
 
   rake db:migrate
-  ruby application.rb
 
-With thin server
+Start thin server
 
-  thin --rackup config.ru start
+  bundle exec thin --rackup config.ru start
   
+Released under the MIT license

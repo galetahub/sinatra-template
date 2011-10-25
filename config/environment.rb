@@ -18,19 +18,20 @@ end
 configure do
   root_path = File.dirname(File.expand_path('../', __FILE__))
   
+  set :root_path, root_path
   set :views, File.join(root_path, 'views')
-  set :public, File.join(root_path, 'public')
+  set :public_folder, File.join(root_path, 'public')
   set :static, true
   
   SiteConfig = OpenStruct.new(
-                 :title => 'Your Application Name',
-                 :author => 'Your Name',
-                 :url_base => 'http://localhost:4567/'
-               )
+    :title => 'Your Application Name',
+    :author => 'Your Name',
+    :url_base => 'http://localhost:4567/'
+  )
 
   # load models
-  $LOAD_PATH.unshift("#{root_path}/lib/models")
-  Dir.glob("#{root_path}/lib/models/*.rb") { |lib| require File.basename(lib, '.*') }
+  $LOAD_PATH.unshift("#{root_path}/lib")
+  Dir.glob("#{root_path}/lib/*.rb") { |lib| require File.basename(lib, '.*') }
 
 #  DataMapper::Logger.new($stdout, :debug)
                
